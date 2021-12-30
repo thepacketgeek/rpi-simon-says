@@ -1,0 +1,8 @@
+[package]
+name = "rpi"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ctrlc = "3.2.1"
+rust_gpiozero = { path = "../rust_gpiozero" }
