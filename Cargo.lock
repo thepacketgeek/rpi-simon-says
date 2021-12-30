@@ -71,7 +71,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rpi"
+name = "rpi-simon-says"
 version = "0.1.0"
 dependencies = [
  "ctrlc",
