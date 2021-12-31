@@ -1,22 +1,23 @@
-use std::time::Duration;
-
 use rand::prelude::SliceRandom;
 
 mod buttons;
 pub use buttons::ButtonGroup;
 
 pub mod consts;
-use consts::*;
+pub use consts::*;
 
 mod leds;
 pub use leds::LEDGroup;
 
+/// An event emitted when button(s) are pressed, either with the button GPIO or
+/// a doublepress event
 #[derive(Debug)]
 pub enum ButtonPress {
     Single(u8),
     Double,
 }
 
+/// State for each complete round of Simon Says
 #[derive(Debug)]
 pub struct Game {
     /// GPIO button pins
@@ -25,6 +26,8 @@ pub struct Game {
 }
 
 impl Game {
+    /// Create a new game round with the given length
+    /// - creates a random sequence using the available Buttons
     pub fn new(length: usize) -> Self {
         let mut sequence = Vec::with_capacity(length);
 
@@ -44,6 +47,8 @@ impl Game {
         }
     }
 
+    /// The length of this game round
+    #[allow(clippy::len_without_is_empty)]
     pub fn len(&self) -> usize {
         self.sequence.len()
     }
