@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 ctrlc = "3.2.1"
+rppal = "0.13.1"
 rust_gpiozero = { path = "../rust_gpiozero" }
