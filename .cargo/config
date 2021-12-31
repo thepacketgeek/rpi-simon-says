@@ -2,5 +2,5 @@
 target = "armv7-unknown-linux-musleabihf"
 
 [target.armv7-unknown-linux-musleabihf]
-linker = "arm-linux-gnu-gcc" # Fedora: sudo dnf -y install binutils-arm-linux-gnu gcc-arm-linux-gnu glibc-arm-linux-gnu
-# linker = "arm-linux-gnueabihf-ld" # MacOS: brew install arm-linux-gnueabihf-binutils
+linker = "arm-linux-gnu-gcc" # Fedora
+# linker = "arm-linux-gnueabihf-ld" # MacOS

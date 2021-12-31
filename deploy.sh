@@ -12,6 +12,11 @@
 # [target.armv7-unknown-linux-musleabihf]
 # linker = "arm-linux-gnueabihf-ld"
 
+# Fedora Prereqs:
+# sudo dnf install -y gcc-arm-linux-gnu
+# sudo dnf install -y binutils-arm-linux-gnu
+# rustup target add armv7-unknown-linux-musleabihf
+
 set -o errexit
 
 readonly TARGET_HOST=r2d2
