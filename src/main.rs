@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::env;
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
@@ -76,11 +77,17 @@ fn play_game(length: usize, lights: &mut LEDGroup, buttons: &mut ButtonGroup) ->
 }
 
 fn main() {
+    let length = env::args()
+        .skip(1)
+        .map(|arg| arg.parse().expect("Invalid length provided"))
+        .next()
+        .unwrap_or(8);
+
     let mut lights = LEDGroup::new(&GPIO_LEDS);
     let mut buttons = ButtonGroup::new(&GPIO_BUTTONS);
 
     loop {
-        match play_game(6, &mut lights, &mut buttons) {
+        match play_game(length, &mut lights, &mut buttons) {
             Some(true) => {
                 println!("You Won!");
                 lights.blink(GPIO_LED_GREEN, 5, 0.200, 0.15);

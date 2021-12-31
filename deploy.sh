@@ -26,4 +26,5 @@ readonly SOURCE_PATH=./target/$TARGET/release/rpi-simon-says
 
 cargo build --release
 scp ${SOURCE_PATH} ${TARGET_HOST}:${TARGET_PATH}
-ssh -t ${TARGET_HOST} ${TARGET_PATH}
+echo ${TARGET_PATH} $@
+ssh -t ${TARGET_HOST} ${TARGET_PATH} $@
