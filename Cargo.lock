@@ -229,6 +229,7 @@ dependencies = [
 [[package]]
 name = "rust_gpiozero"
 version = "0.2.1"
+source = "git+https://github.com/thepacketgeek/rust_gpiozero?branch=button-debounce#c3e83bf9674ee0c83c4c2b5f9a0dde3a2c5e7281"
 dependencies = [
  "rppal 0.12.0",
 ]

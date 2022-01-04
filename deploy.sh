@@ -19,9 +19,9 @@
 
 set -o errexit
 
-readonly TARGET_HOST=r2d2
+readonly TARGET_HOST=$RPI_HOST
 readonly TARGET=armv7-unknown-linux-musleabihf
-readonly TARGET_PATH=/home/pi/bin/rpi
+readonly TARGET_PATH=/home/pi/bin/rpi-simon-says
 readonly SOURCE_PATH=./target/$TARGET/release/rpi-simon-says
 
 cargo build --release
