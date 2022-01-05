@@ -5,12 +5,14 @@ use rpi_simon_says::{ButtonGroup, ButtonPress, GPIOPin, LEDGroup, Round};
 
 /// GPIOs for LEDs in use
 pub const GPIO_BUTTON_RED: GPIOPin = 4;
-pub const GPIO_LED_RED: GPIOPin = 17;
-pub const GPIO_BUTTON_GREEN: GPIOPin = 16;
-pub const GPIO_LED_GREEN: GPIOPin = 12;
+pub const GPIO_BUTTON_GREEN: GPIOPin = 17;
 pub const GPIO_BUTTON_BLUE: GPIOPin = 27;
+pub const GPIO_LED_RED: GPIOPin = 12;
+pub const GPIO_LED_GREEN: GPIOPin = 16;
 pub const GPIO_LED_BLUE: GPIOPin = 18;
 
+// Adding a 4th LED is as easy as adding the button/LED constants here and adding it
+// to these const arrays, then adding a mapping in [`get_led_from_button`] below
 pub const GPIO_LEDS: [GPIOPin; 3] = [GPIO_LED_RED, GPIO_LED_GREEN, GPIO_LED_BLUE];
 pub const GPIO_BUTTONS: [GPIOPin; 3] = [GPIO_BUTTON_RED, GPIO_BUTTON_GREEN, GPIO_BUTTON_BLUE];
 
@@ -19,6 +21,16 @@ const BLINK_LONG: Duration = Duration::from_millis(450);
 const BLINK_MED: Duration = Duration::from_millis(300);
 const BLINK_SHORT: Duration = Duration::from_millis(150);
 const TURN_DELAY: Duration = Duration::from_millis(1000);
+
+/// Mapping of buttons to their corresponding LEDs
+pub fn get_led_from_button(button_gpio: GPIOPin) -> GPIOPin {
+    match button_gpio {
+        GPIO_BUTTON_RED => GPIO_LED_RED,
+        GPIO_BUTTON_GREEN => GPIO_LED_GREEN,
+        GPIO_BUTTON_BLUE => GPIO_LED_BLUE,
+        _ => panic!("Unknown Button GPIO: {}", button_gpio),
+    }
+}
 
 fn main() {
     let starting_length = env::args()
@@ -111,15 +123,5 @@ fn play_round(length: usize, lights: &mut LEDGroup, buttons: &mut ButtonGroup) -
         } else {
             return Some(false);
         }
-    }
-}
-
-/// Mapping of buttons to their corresponding LEDs
-pub fn get_led_from_button(button_gpio: GPIOPin) -> GPIOPin {
-    match button_gpio {
-        GPIO_BUTTON_RED => GPIO_LED_RED,
-        GPIO_BUTTON_GREEN => GPIO_LED_GREEN,
-        GPIO_BUTTON_BLUE => GPIO_LED_BLUE,
-        _ => panic!("Unknown Button GPIO: {}", button_gpio),
     }
 }
