@@ -8,4 +8,4 @@ ctrlc = "3.2.1"
 crossbeam = "0.8.1"
 rand = "0.8.4"
 rppal = "0.13.1"
-rust_gpiozero = { git = "https://github.com/thepacketgeek/rust_gpiozero", branch = "button-debounce" }
+rust_gpiozero = { git = "https://github.com/rahul-thakoor/rust_gpiozero" }
